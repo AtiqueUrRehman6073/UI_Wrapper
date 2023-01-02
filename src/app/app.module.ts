@@ -1,3 +1,4 @@
+// import { PrimeModule } from './../shared/prime/prime.module';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
@@ -6,19 +7,23 @@ import { AppComponent } from './app.component';
 import { LoaderComponent } from './Components/loader/loader.component';
 import { HotTableModule } from '@handsontable/angular';
 import { registerAllModules } from 'handsontable/registry';
+import { DataTableComponent } from './Components/data-table/data-table.component';
+import { PrimeModule } from 'src/shared/prime/prime.module';
 
 //registerAllModules();
 
 @NgModule({
   declarations: [
     AppComponent,
-    LoaderComponent
+    LoaderComponent,
+    DataTableComponent,
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,
-    HotTableModule
+    HotTableModule,
+    PrimeModule
   ],
   providers: [],
   bootstrap: [AppComponent]

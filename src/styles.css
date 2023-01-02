@@ -1,21 +1,42 @@
 /* You can add global styles to this file, and also import other style files */
 @import '~handsontable/dist/handsontable.full.css';
-body{
+
+body {
     font-family: 'Courier New', Courier, monospace;
     height: 90vh;
+    background: rgba(211, 211, 211, 0.1);
 }
-.customHeader{
+
+body::-webkit-scrollbar{
+    display: none;
+}
+.cxScroll::-webkit-scrollbar {
+    width: 7px;
+    height: 7px;
+    border-radius: 20px;
+    background-color: rgba(47, 144, 201, 0.452);
+    /* or add it to the track */
+}
+.cxScroll::-webkit-scrollbar-thumb {
+    border-radius: 20px;
+    background: rgba(47, 144, 201, 0.952);
+  }
+
+.customHeader {
     background-color: rgb(29, 180, 250);
     color: #fff;
 }
-.customHeader *{
+
+.customHeader * {
     color: #fff;
 }
-.customHeader h3{
+
+.customHeader h3 {
     font-size: 26pt;
     font-weight: bold !important;
 }
-.customHeader h6{
+
+.customHeader h6 {
     font-size: 16pt;
     display: flex;
     justify-content: center;
@@ -23,28 +44,34 @@ body{
     height: 100%;
     margin: 0px 0px 0px 10px;
 }
-.navbar{
+
+.navbar {
     padding: 0% !important;
 }
-.nav-item{
+
+.nav-item {
     cursor: pointer;
 }
-#sidebarMenu{
+
+#sidebarMenu {
     width: 218px;
     height: 90vh;
     font-size: 10pt !important;
     margin: 0%;
     position: absolute;
 }
-.active{
+
+.active {
     background-color: rgb(29, 180, 250) !important;
     color: #fff !important;
     border-color: transparent !important;
 }
-.active *{
+
+.active * {
     color: #fff !important;
 }
-.containerCustom{
+
+.containerCustom {
     width: 100%;
     padding: 25px 0px 0px 0px;
     left: 0;
@@ -52,6 +79,7 @@ body{
     font-size: 10pt !important;
     margin: 0px 25px 0px 238px;
 }
+
 /* table{
     margin: 10px !important;
     width: 1450px !important;
@@ -65,10 +93,14 @@ tr{
     height: 10px !important;
     overflow: hidden !important;
 } */
-.customLoader{
+.customLoader {
     position: absolute;
     height: 100vh;
     width: 100%;
     z-index: 1000;
     background-color: rgba(0, 0, 0, 0.425)
+}
+
+.customeCenter {
+    width: 85%;
 }

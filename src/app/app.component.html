@@ -65,6 +65,8 @@
   </div>
 </nav>
 
+<app-data-table></app-data-table>
+
 <div class="containerCustom" *ngIf="!showInExcel">
   <div class="row bg-light shadow-sm mt-4 p-2 customeCenter">
     <div class="col-2"><button class="btn btn-sm btn-primary text-white" (click)="GetAllPatients()"><i class="fa fa-list m-1"></i>Get All Data</button></div>
@@ -75,13 +77,13 @@
     <div class="col-2"><button class="btn btn-sm btn-danger text-white"><i class="fa fa-ban m-1"></i>Cancel</button>
     </div>
   </div>
-  <div class="mt-1 mr-1 ml-1" *ngIf="showAlert">
+  <div class="mt-1 mr-1 ml-1" *ngIf="showAlert" style="width:83.5%;">
     <div [class]="alertType" role="alert">
       {{alertMessage}}
       <button type="button" class="btn-close" aria-label="Close" (click)="CloseAlert()"></button>
     </div>
   </div>
-  <div class="mt-5" style="height: 70vh !important;overflow-y: scroll;overflow-x: hidden;">
+  <div class="mt-5 cxScroll" style="height: 73vh !important;background: #fff;overflow-y: scroll;overflow-x: hidden;width:85%;">
     <table class="table table-striped table-bordered">
       <thead>
         <tr>
@@ -112,5 +114,10 @@
   </div>
 </div>
 <div id="abc" class="containerCustom" *ngIf="showInExcel">
-  <hot-table  [hotId]="hotid" [licenseKey]="licenseKey" [settings]="gridSettings"></hot-table>
+  <div style="display: flex;flex-direction: row-reverse;width:80%"><i class="fa fa-close" style="cursor: pointer;" (click)="CloseExcel()"></i></div>
+  <div class="row">
+    <div class="col-12">
+      <hot-table  [hotId]="hotid" [licenseKey]="licenseKey" [settings]="gridSettings"></hot-table>
+    </div>
+  </div>
 </div>

@@ -10,10 +10,10 @@
   },
   "private": true,
   "dependencies": {
-    "@angular/animations": "^14.2.0",
+    "@angular/animations": "^15.0.4",
     "@angular/common": "^14.2.0",
     "@angular/compiler": "^14.2.0",
-    "@angular/core": "^14.2.0",
+    "@angular/core": "^15.0.4",
     "@angular/forms": "^14.2.0",
     "@angular/platform-browser": "^14.2.0",
     "@angular/platform-browser-dynamic": "^14.2.0",
@@ -21,6 +21,7 @@
     "@handsontable/angular": "^5.1.1",
     "core-js": "^3.27.1",
     "handsontable": "^7.4.2",
+    "primeng": "^14.2.3",
     "rxjs": "~7.5.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.11.4"

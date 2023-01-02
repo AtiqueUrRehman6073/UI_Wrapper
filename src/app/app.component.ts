@@ -1,3 +1,4 @@
+import { Patient } from './Models/Patient';
 import { MasterApiService } from './../services/master-api.service';
 import { Component, OnInit } from '@angular/core';
 import Handsontable from 'handsontable';
@@ -15,7 +16,7 @@ export class AppComponent implements OnInit {
   showInExcel: boolean = false;
   alertType: string = 'alert alert-dismissible fade show';
   alertMessage: string = '';
-  patientList: Array<any> = [];
+  patientList: Array<Patient> = [];
   colHeaders: Array<string> = [];
   hotid: string = 'gridId';
   licenseKey = "non-commercial-and-evaluation";
@@ -56,7 +57,7 @@ export class AppComponent implements OnInit {
       rowHeaders: true,
       data: [],
       rowHeights: 23,
-      colWidths: [150, 150, 75, 95, 90, 120, 105, 135, 55, 65, 55, 300],
+      colWidths: [130, 160, 75, 95, 90, 100, 105, 100, 120, 65, 55, 250],
       columns: [
         {
           data: 'FirstName',
@@ -108,7 +109,7 @@ export class AppComponent implements OnInit {
         },
       ],
       colHeaders: [
-        'Name', 'Email', 'Gender', 'Marital S', 'Language', 'DOB', 'Cell Phone', 'Business Phone', 'City', 'State', 'Zip', 'Address'
+        'Name', 'Email', 'Gender', 'Marital S', 'Language', 'DOB', 'Cell Phone', 'Work Phone', 'City', 'State', 'Zip', 'Address'
       ]
     }
   }
@@ -120,9 +121,27 @@ export class AppComponent implements OnInit {
     this.showLoader = true;
     this.apiService.GetAllData().subscribe((reponse: any) => {
       this.patientList = reponse;
+      this.patientList.forEach(element => {
+        element.Address = element.Address == null ? "(--)" : element.Address;
+        element.DateOfBirth = element.DateOfBirth == null ? "(--)" : element.DateOfBirth.split('T')[0];
+        element.FirstName = element.FirstName == null ? element.LastName == null ? "(--)" : element.LastName : element.FirstName;
+        element.EmailAddress = element.EmailAddress == null ? "(--)" : element.EmailAddress;
+        element.Gender = element.Gender == null ? "(--)" : element.Gender;
+        element.MaritalStatus = element.MaritalStatus == null ? "(--)" : element.MaritalStatus;
+        element.Languages = element.Languages == null ? "(--)" : element.Languages;
+        element.CellPhone = element.CellPhone == null ? "(--)" : element.CellPhone;
+        element.BusinessPhone = element.BusinessPhone == null ? "(--)" : element.BusinessPhone;
+        element.City = element.City == null ? "(--)" : element.City;
+        element.State = element.State == null ? "(--)" : element.State;
+        element.Zip = element.Zip == null ? "(--)" : element.Zip;
+      });
       this.showLoader = false;
+      //this.ViewInExcel();
       this.alertType = this.alertType + ' alert-success';
       clearInterval(calc);
+      setTimeout(() => {
+        this.showAlert = false;
+      }, 3000);
       this.alertMessage = this.patientList.length + ' Records Loaded Successfully ! Time taken : ' + timer + ' milliseconds.';
       this.showAlert = true;
     }, (error: any) => {
@@ -133,9 +152,16 @@ export class AppComponent implements OnInit {
   }
   ViewInExcel() {
     this.showInExcel = true;
+    //if(this.hotRegisterer.getInstance(this.hotid).isEmptyRow(1)){
+    //debugger;
     setTimeout(() => {
-      this.hotRegisterer.getInstance(this.hotid).updateSettings({ data: this.patientList });
-    }, 1000);
+      if (this.hotRegisterer.getInstance(this.hotid).countEmptyRows() <= 3) {
+        this.hotRegisterer.getInstance(this.hotid).updateSettings({ data: this.patientList });
+      }
+    }, 100);
+  }
+  CloseExcel() {
+    this.showInExcel = false;
   }
 
 }
