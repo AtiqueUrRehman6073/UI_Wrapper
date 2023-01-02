@@ -22,8 +22,11 @@ export class AppComponent implements OnInit {
   licenseKey = "non-commercial-and-evaluation";
   gridSettings: Handsontable.GridSettings = {};
   private hotRegisterer = new HotTableRegisterer();
+
   constructor(private apiService: MasterApiService) { }
   ngOnInit() {
+    // this.tempArray = ['One','Two','Three','Four'];
+    // this.cols = ['ColsOne','ColsTwo','ColsThree','ColsFour'];
     this.hotid = 'gridId';
     this.InitializeGridControls();
     this.colHeaders = [

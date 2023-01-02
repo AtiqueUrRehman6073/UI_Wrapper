@@ -1,5 +1,5 @@
 import { MessageService, ConfirmationService } from 'primeng/api';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { CustomerService } from 'src/services/customer.service';
 import { ProductService } from 'src/services/product.service';
 
@@ -11,6 +11,10 @@ import { ProductService } from 'src/services/product.service';
 })
 export class DataTableComponent implements OnInit {
 
+  @Input() dataArray:any;
+  @Input() cols:Array<string> = [];
+
+
   customers: Array<Customer> = [];
 
   first = 0;
@@ -20,9 +24,11 @@ export class DataTableComponent implements OnInit {
   constructor(private customerService: CustomerService,private productService: ProductService, private messageService: MessageService,private confirmationService:ConfirmationService) { }
 
   ngOnInit() {
-      this.customerService.getCustomersLarge().then((customers: Array<Customer>) => this.customers = customers);
+    setTimeout(()=>{
+      console.log(this.dataArray);
+      console.log(this.cols);
+    },3000);
       this.productService.getProducts().then((data:any) => this.products = data);
-
       this.statuses = [
           {label: 'INSTOCK', value: 'instock'},
           {label: 'LOWSTOCK', value: 'lowstock'},

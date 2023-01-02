@@ -1,33 +1,3 @@
-<!-- <div class="card">
-    <h5>Programmatic Control</h5>
-        <div class="mb-3">
-            <p-button type="button" icon="pi pi-chevron-left" (click)="prev()" [disabled]="isFirstPage()" styleClass="p-button-text"></p-button>
-            <p-button type="button" icon="pi pi-refresh" (click)="reset()" styleClass="p-button-text"></p-button>
-            <p-button type="button" icon="pi pi-chevron-right" (click)="next()" [disabled]="isLastPage()" styleClass="p-button-text"></p-button>
-        </div>
-    <p-table [value]="customers" [paginator]="true" [rows]="rows" [showCurrentPageReport]="true" [(first)]="first"
-        [tableStyle]="{'min-width': '50rem'}"
-        currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
-        [rowsPerPageOptions]="[10,25,50]">
-        <ng-template pTemplate="header">
-            <tr>
-                <th style="width:25%">Name</th>
-                <th style="width:25%">Country</th>
-                <th style="width:25%">Company</th>
-                <th style="width:25%">Representative</th>
-            </tr>
-        </ng-template>
-        <ng-template pTemplate="body" let-customer>
-            <tr>
-                <td>{{customer.name}}</td>
-                <td>{{customer.country.name}}</td>
-                <td>{{customer.company}}</td>
-                <td>{{customer.representative.name}}</td>
-            </tr>
-        </ng-template>
-    </p-table>
-</div> -->
-
 <p-toast></p-toast>
 <div class="card">
     <p-toolbar styleClass="mb-4 gap-2">
@@ -41,11 +11,12 @@
         <ng-template pTemplate="right">
             <p-fileUpload mode="basic" accept="image/*" [maxFileSize]="1000000" label="Import" chooseLabel="Import"
                 class="mr-2 inline-block"></p-fileUpload>
-            <button pButton pRipple label="Export" icon="pi pi-upload" class="p-button-sm p-button-help" style="margin: 2px;"></button>
+            <button pButton pRipple label="Export" icon="pi pi-upload" class="p-button-sm p-button-help"
+                style="margin: 2px;"></button>
         </ng-template>
     </p-toolbar>
 
-    <p-table #dt [value]="products" [rows]="10" [paginator]="true"
+    <p-table #dt [value]="dataArray" [rows]="10" [paginator]="true"
         [globalFilterFields]="['name','country.name','representative.name','status']"
         [tableStyle]="{'min-width': '75rem'}" [(selection)]="selectedProducts" [rowHover]="true" dataKey="id"
         currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [showCurrentPageReport]="true">
@@ -53,57 +24,57 @@
             <div style="display: flex;flex-direction: row-reverse;">
                 <span class="p-input-icon-left">
                     <i class="pi pi-search"></i>
-                    <input pInputText #searchBox type="text" placeholder="Search..." (input)="dt.filterGlobal(searchBox.value, 'contains')" />
+                    <input pInputText #searchBox type="text" placeholder="Search..."
+                        (input)="dt.filterGlobal(searchBox.value, 'contains')" />
                 </span>
             </div>
         </ng-template>
         <ng-template pTemplate="header">
             <tr>
-                <th style="width: 4rem">
+                <!-- <th style="width: 4rem">
                     <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
+                </th> -->
+                <th pSortableColumn="name" style="min-width:5rem" *ngFor="let col of cols">
+                    {{col}}<p-sortIcon field="name"></p-sortIcon>
                 </th>
-                <th pSortableColumn="name" style="min-width:15rem">Name <p-sortIcon field="name"></p-sortIcon>
+                <th style="width: 150px;min-width:150px;">Actions <p-sortIcon field="inventoryStatus"></p-sortIcon>
                 </th>
-                <th>Image</th>
-                <th pSortableColumn="price">Price <p-sortIcon field="price"></p-sortIcon>
-                </th>
-                <th pSortableColumn="category" style="min-width:10rem">Category <p-sortIcon field="category">
-                    </p-sortIcon>
-                </th>
-                <th pSortableColumn="rating">Reviews <p-sortIcon field="rating"></p-sortIcon>
-                </th>
-                <th pSortableColumn="inventoryStatus" style="min-width:10rem">Status <p-sortIcon
-                        field="inventoryStatus"></p-sortIcon>
-                </th>
-                <th></th>
             </tr>
         </ng-template>
-        <ng-template pTemplate="body" let-product>
+        <ng-template pTemplate="body" let-patient>
             <tr>
-                <td>
-                    <p-tableCheckbox [value]="product"></p-tableCheckbox>
-                </td>
-                <td>{{product.name}}</td>
-                <td><i class="fa fa-user"></i></td>
-                <td>{{product.price | currency:'USD'}}</td>
-                <td>{{product.category}}</td>
-                <td>
-                    <p-rating [ngModel]="product.rating" [readonly]="true" [cancel]="false"></p-rating>
-                </td>
-                <td><span
-                        [class]="'product-badge status-' + (product.inventoryStatus ? product.inventoryStatus.toLowerCase() : '')">{{product.inventoryStatus}}</span>
-                </td>
-                <td>
+                <td>{{patient.FirstName + ' ' +patient.LastName}}</td>
+                <td><i class="fa fa-user"></i>{{patient.EmailAddress}}</td>
+                <td>{{patient.Gender}}</td>
+                <td>{{patient.MaritalStatus}}</td>
+                <td>{{patient.Languages}}</td>
+                <td>{{patient.DateOfBirth}}</td>
+                <td>{{patient.CellPhone}}</td>
+                <td>{{patient.BusinessPhone}}</td>
+                <td>{{patient.City}}</td>
+                <td>{{patient.State}}</td>
+                <td>{{patient.Zip}}</td>
+                <td>{{patient.Address}}</td>
+                <td style="width: 150px;min-width:150px;">
                     <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success mr-2"
-                        (click)="editProduct(product)"></button>
+                        (click)="editProduct(patient)"></button>
                     <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning"
                         (click)="deleteProduct(product)"></button>
                 </td>
+                <!-- <td>
+                    <p-rating [ngModel]="patient.rating" [readonly]="true" [cancel]="false"></p-rating>
+                </td> -->
+                <!-- <td><span
+                        [class]="'product-badge status-' + (patient.inventoryStatus ? patient.inventoryStatus.toLowerCase() : '')">{{patient.inventoryStatus}}</span>
+                </td> -->
+                <!-- <td>
+                    <p-tableCheckbox [value]="patient"></p-tableCheckbox>
+                </td> -->
             </tr>
         </ng-template>
         <ng-template pTemplate="summary">
             <div class="flex align-items-center justify-content-between">
-                In total there are {{products ? products.length : 0 }} products.
+                In total there are {{dataArray ? dataArray.length : 0 }} Patients.
             </div>
         </ng-template>
     </p-table>

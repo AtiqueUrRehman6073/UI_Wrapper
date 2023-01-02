@@ -4,6 +4,8 @@
 body {
     font-family: 'Courier New', Courier, monospace;
     height: 90vh;
+    width: 100%;
+    overflow: hidden;
     background: rgba(211, 211, 211, 0.1);
 }
 
@@ -12,8 +14,9 @@ body::-webkit-scrollbar{
 }
 .cxScroll::-webkit-scrollbar {
     width: 7px;
-    height: 7px;
+    height: 7px !important;
     border-radius: 20px;
+    /* border:1px solid #d5d5d5; */
     background-color: rgba(47, 144, 201, 0.452);
     /* or add it to the track */
 }
@@ -109,9 +112,17 @@ tr{
     font-size:10px;
   }
 
-  .p-button{
+.p-button{
       font-size: 10px !important;
       height: 30px;
       padding: 10px !important;
       width: fit-content;
-  }
+}
+.p-button-rounded{
+      width: 30px !important;
+      height: 30px !important;
+      margin: 5px !important;
+}
+td,tr,th{
+    font-size: 11pt !important;
+}
