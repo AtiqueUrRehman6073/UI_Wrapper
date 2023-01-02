@@ -104,3 +104,14 @@ tr{
 .customeCenter {
     width: 85%;
 }
+
+:host ::ng-deep .p-button{
+    font-size:10px;
+  }
+
+  .p-button{
+      font-size: 10px !important;
+      height: 30px;
+      padding: 10px !important;
+      width: fit-content;
+  }

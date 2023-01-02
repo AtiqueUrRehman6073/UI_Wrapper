@@ -57,7 +57,7 @@ export class AppComponent implements OnInit {
       rowHeaders: true,
       data: [],
       rowHeights: 23,
-      colWidths: [130, 160, 75, 95, 90, 100, 105, 100, 120, 65, 55, 250],
+      colWidths: [150, 200, 100, 100, 100, 100, 110, 120, 150, 70, 60, 300],
       columns: [
         {
           data: 'FirstName',

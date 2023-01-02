@@ -9,6 +9,7 @@ import { HotTableModule } from '@handsontable/angular';
 import { registerAllModules } from 'handsontable/registry';
 import { DataTableComponent } from './Components/data-table/data-table.component';
 import { PrimeModule } from 'src/shared/prime/prime.module';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 //registerAllModules();
 
@@ -20,6 +21,7 @@ import { PrimeModule } from 'src/shared/prime/prime.module';
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     HttpClientModule,
     AppRoutingModule,
     HotTableModule,
