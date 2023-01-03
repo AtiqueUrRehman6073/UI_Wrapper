@@ -1,4 +1,4 @@
-import { Patient } from './../app/Models/Patient';
+import { Patient } from '../../app/Models/Patient'
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 

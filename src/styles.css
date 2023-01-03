@@ -126,3 +126,12 @@ tr{
 td,tr,th{
     font-size: 11pt !important;
 }
+.p-toast{
+    width: 20rem !important;
+}
+.p-toast-message-content{
+    padding: 5px !important;
+}
+.p-toast *{
+    font-size: 10pt !important;
+}

@@ -1,7 +1,7 @@
 import { MessageService, ConfirmationService } from 'primeng/api';
 import { Component, OnInit, Input } from '@angular/core';
-import { CustomerService } from 'src/services/customer.service';
-import { ProductService } from 'src/services/product.service';
+import { CustomerService } from 'src/services/customerService/customer.service';
+import { ProductService } from 'src/services/Extras/product.service';
 
 @Component({
   selector: 'app-data-table',

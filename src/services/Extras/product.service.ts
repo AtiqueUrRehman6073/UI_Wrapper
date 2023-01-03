@@ -1,4 +1,4 @@
-import { Product } from './../app/Components/data-table/data-table.component';
+import { Product } from '../../app/Components/data-table/data-table.component';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
@@ -43,8 +43,6 @@ export class ProductService {
 
     constructor(private http: HttpClient) {}
 
-
-
     getProducts() {
         return this.http
             .get<any>('assets/products.json')
@@ -54,7 +52,6 @@ export class ProductService {
                 return data;
             });
     }
-
 
     generatePrduct(): Product {
         const product: Product = {
