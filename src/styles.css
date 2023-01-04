@@ -105,7 +105,7 @@ tr{
 }
 
 .customeCenter {
-    width: 85%;
+    width: 99%;
 }
 
 :host ::ng-deep .p-button{

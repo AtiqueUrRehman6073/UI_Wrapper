@@ -1,3 +1,4 @@
+import { DockComponent } from './../Components/dock/dock.component';
 import { ToastModule } from 'primeng/toast';
 import { DashboardRoutingModule } from './dashboard-routing.module';
 import { NgModule } from '@angular/core';
@@ -15,6 +16,7 @@ import { DataTableComponent } from '../Components/data-table/data-table.componen
     DashboardComponent,
     LoaderComponent,
     DataTableComponent,
+    DockComponent
   ],
   imports: [
     DashboardRoutingModule,
