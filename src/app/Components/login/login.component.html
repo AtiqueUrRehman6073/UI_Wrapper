@@ -40,19 +40,28 @@
                                 f['Password'].dirty || f['Password'].touched"
                                     [class.invalid]="f['Password'].invalid && f['Password'].dirty || f['Password'].touched">
                             </div>
-                            <div *ngIf="f['Password'].touched" class="text-danger" style="text-align: right;width: 100%;">
-                                <div *ngIf="f['Password'].touched && f['Password'].hasError('required')">Password is required*</div>
-                                <div *ngIf="f['Password'].touched && f['Password'].hasError('minlength')">Password should be min 8 chars Length*</div>
-                                <div *ngIf="f['Password'].touched && f['Password'].hasError('maxlength')">Password should be max 20 chars Length*</div>
+                            <div *ngIf="f['Password'].touched" class="text-danger"
+                                style="text-align: right;width: 100%;">
+                                <div *ngIf="f['Password'].touched && f['Password'].hasError('required')">Password is
+                                    required*</div>
+                                <div *ngIf="f['Password'].touched && f['Password'].hasError('minlength')">Password
+                                    should be min 8 chars Length*</div>
+                                <div *ngIf="f['Password'].touched && f['Password'].hasError('maxlength')">Password
+                                    should be max 20 chars Length*</div>
                             </div>
                         </div>
                         <div class="col-12 md:col-12">
                             <div style="display: flex;margin: auto;width: 50%;">
-                                <button pButton type="submit" label="Submit" icon="pi pi-check" [disabled]="loginFormGroup.invalid" class="p-button-sm"></button>
+                                <button pButton type="submit" label="Submit" icon="pi pi-check"
+                                    [disabled]="loginFormGroup.invalid" class="p-button-sm"></button>
                             </div>
                         </div>
                     </div>
                 </form>
+                <div style="text-align: center;">
+                    <b>OR</b>
+                    <p style="cursor:pointer" (click)="toSignup()">Create a New Account</p>
+                </div>
             </p-panel>
         </div>
         <div class="xl:col-4 lg:col-4 sm:col-1"></div>

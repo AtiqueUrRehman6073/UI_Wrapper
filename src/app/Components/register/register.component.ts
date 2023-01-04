@@ -31,10 +31,9 @@ export class RegisterComponent {
   toggleShowPass() {
     this.showPass = !this.showPass;
   }
-  get f() {
-    return this.registerFormGroup.controls;
+  toLogin(){
+    this.router.navigateByUrl('/login');
   }
-
   register() {
     console.log('login called from login Component');
     this.registerData.Name = this.registerFormGroup.controls['Name'].value;
@@ -59,5 +58,8 @@ export class RegisterComponent {
         console.log("erorr: ", error);
       }
     );
+  }
+  get f() {
+    return this.registerFormGroup.controls;
   }
 }

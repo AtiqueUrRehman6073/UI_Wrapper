@@ -28,10 +28,10 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
 
   }
-  get f() {
-    return this.loginFormGroup.controls;
-  }
 
+  toSignup(){
+    this.router.navigateByUrl('/register');
+  }
   login() {  
     console.log('login called from login Component');  
     this._authservice.login(this.loginData).subscribe(  
@@ -49,5 +49,8 @@ export class LoginComponent implements OnInit {
         console.log("erorr: ", error);  
       }  
     );
+  }
+  get f() {
+    return this.loginFormGroup.controls;
   }
 }
