@@ -2,7 +2,6 @@
   <app-loader></app-loader>
 </div>
 <header class="customHeader">
-  <!-- Navbar -->
   <nav class="navbar navbar-expand-lg">
     <div class="container-fluid">
       <button class="navbar-toggler" type="button" data-mdb-toggle="collapse" data-mdb-target="#navbarExample01"
@@ -67,15 +66,12 @@
 
 <div class="containerCustom" *ngIf="!showInExcel">
   <div class="row bg-light shadow-sm mt-4 p-2 customeCenter">
-    <div class="col-1"><button pButton class="p-button-primary" (click)="GetAllPatients()"><i
-          class="fa fa-list m-1"></i>Get All Data</button></div>
-    <div class="col-1"><button pButton class="p-button-success" (click)="ViewInExcel()"><i
-          class="fa fa-file-excel-o m-1"></i>Show in Excel</button></div>
-    <div class="col-1"><button pButton class="p-button-info">Get JSON Data</button></div>
-    <div class="col-1"><button pButton class="p-button-warning"><i class="fa fa-search m-1"></i>Search By Id</button>
-    </div>
-    <div class="col-1"><button pButton class="p-button-success"><i class="fa fa-plus m-1"></i> New Record</button></div>
-    <div class="col-1"><button pButton class="p-button-danger"><i class="fa fa-ban m-1"></i>Cancel</button>
+    <div class="xl:col-1 lg:col-2 md:col-2 sm:col-4"><button pButton class="p-button-primary" (click)="GetAllPatients()"><i class="pi pi-list m-1"></i>List</button></div>
+    <div class="xl:col-1 lg:col-2 md:col-2 sm:col-4"><button pButton class="p-button-success" (click)="ViewInExcel()"><i class="pi pi-file-excel m-1"></i>Excel</button></div>
+    <div class="xl:col-1 lg:col-2 md:col-2 sm:col-4"><button pButton class="p-button-info"><i class="pi pi-code m-1"></i>JSON</button></div>
+    <div class="xl:col-1 lg:col-2 md:col-2 sm:col-4"><button pButton class="p-button-warning"><i class="pi pi-search m-1"></i>Search</button></div>
+    <div class="xl:col-1 lg:col-2 md:col-2 sm:col-4"><button pButton class="p-button-success"><i class="pi pi-plus m-1"></i>New</button></div>
+    <div class="xl:col-1 lg:col-2 md:col-2 sm:col-4"><button pButton class="p-button-danger"><i class="pi pi-ban m-1"></i>Cancel</button>
     </div>
   </div>
   <!-- <div class="mt-1 mr-1 ml-1" *ngIf="showAlert" style="width:83.5%;">
