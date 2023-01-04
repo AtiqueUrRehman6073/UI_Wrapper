@@ -44,6 +44,9 @@ import { ToggleButtonModule } from 'primeng/togglebutton';
 import { ToolbarModule } from 'primeng/toolbar';
 import { TooltipModule } from 'primeng/tooltip';
 import { DockModule } from 'primeng/dock';
+import {TreeModule} from 'primeng/tree';
+import {TreeTableModule} from 'primeng/treetable';
+import {TerminalModule} from 'primeng/terminal';
 // import {CodeHighlighterModule} from 'primeng/codehighlighter';
 // import {ChipsModule} from 'primeng/chips';
 // import {DataViewModule} from 'primeng/dataview';
@@ -62,9 +65,6 @@ import { DockModule } from 'primeng/dock';
 // import {StepsModule} from 'primeng/steps';
 // import {TieredMenuModule} from 'primeng/tieredmenu';
 // import {SplitButtonModule} from 'primeng/splitbutton';
-// import {TerminalModule} from 'primeng/terminal';
-// import {TreeModule} from 'primeng/tree';
-// import {TreeTableModule} from 'primeng/treetable';
 // import {VirtualScrollerModule} from 'primeng/virtualscroller';
 // import { MessageService } from 'primeng/api/public_api';
 
@@ -110,10 +110,13 @@ const modules = [
   TabMenuModule,
   TableModule,
   TabViewModule,
+  TerminalModule,
   ToastModule,
   ToggleButtonModule,
   ToolbarModule,
   TooltipModule,
+  TreeModule,
+  TreeTableModule
   // MessageService,
 ];
 

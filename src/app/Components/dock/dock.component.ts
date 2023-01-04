@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { MenuItem, MessageService } from 'primeng/api';
+import { TerminalService } from 'primeng/terminal';
 
 @Component({
   selector: 'app-dock',
   templateUrl: './dock.component.html',
   styleUrls: ['./dock.component.scss'],
-  providers: [MessageService]
+  providers: [MessageService,TerminalService]
 })
 export class DockComponent implements OnInit{
   displayTerminal: boolean = false;
