@@ -65,22 +65,30 @@
 </nav>
 <div class="containerCustom" *ngIf="!showInExcel">
   <div class="row bg-light shadow-sm mt-4 customeCenter">
-    <div class="xl:col-1 lg:col-1 md:col-2 sm:col-4"><button pButton class="p-button-primary" (click)="GetAllPatients(true)"><i class="pi pi-list m-1"></i>List</button></div>
-    <div class="xl:col-1 lg:col-1 md:col-2 sm:col-4"><button pButton class="p-button-success" (click)="ViewInExcel()"><i class="pi pi-file-excel m-1"></i>Excel</button></div>
-    <div class="xl:col-1 lg:col-1 md:col-2 sm:col-4"><button pButton class="p-button-info"><i class="pi pi-code m-1"></i>JSON</button></div>
-    <div class="xl:col-1 lg:col-1 md:col-2 sm:col-4"><button pButton class="p-button-warning"><i class="pi pi-search m-1"></i>Search</button></div>
-    <div class="xl:col-1 lg:col-1 md:col-2 sm:col-4"><button pButton class="p-button-success"><i class="pi pi-plus m-1"></i>New</button></div>
-    <div class="xl:col-1 lg:col-1 md:col-2 sm:col-4"><button pButton class="p-button-danger"><i class="pi pi-ban m-1"></i>Cancel</button></div>
-    <div class="xl:col-1 lg:col-1 md:col-2 sm:col-4 d-sm-none d-md-none d-lg-block d-xl-block"><button pButton class="p-button-info" (click)="Docker()"><i class="pi pi-ban m-1"></i>Docker</button></div>
-  <!-- <div class="mt-1 mr-1 ml-1" *ngIf="showAlert" style="width:83.5%;">
+    <div class="xl:col-1 lg:col-1 md:col-2 sm:col-4"><button pButton class="p-button-primary"
+        (click)="GetAllPatients(true)"><i class="pi pi-list m-1"></i>List</button></div>
+    <div class="xl:col-1 lg:col-1 md:col-2 sm:col-4"><button pButton class="p-button-success" (click)="ViewInExcel()"><i
+          class="pi pi-file-excel m-1"></i>Excel</button></div>
+    <div class="xl:col-1 lg:col-1 md:col-2 sm:col-4"><button pButton class="p-button-info"><i
+          class="pi pi-code m-1"></i>JSON</button></div>
+    <div class="xl:col-1 lg:col-1 md:col-2 sm:col-4"><button pButton class="p-button-warning"><i
+          class="pi pi-search m-1"></i>Search</button></div>
+    <div class="xl:col-1 lg:col-1 md:col-2 sm:col-4"><button pButton class="p-button-success"><i
+          class="pi pi-plus m-1"></i>New</button></div>
+    <div class="xl:col-1 lg:col-1 md:col-2 sm:col-4"><button pButton class="p-button-danger"><i
+          class="pi pi-ban m-1"></i>Cancel</button></div>
+    <div class="xl:col-1 lg:col-1 md:col-2 sm:col-4 d-sm-none d-md-none d-lg-block d-xl-block"><button pButton
+        class="p-button-info" (click)="Docker()"><i class="pi pi-ban m-1"></i>Docker</button></div>
+    <!-- <div class="mt-1 mr-1 ml-1" *ngIf="showAlert" style="width:83.5%;">
     <div [class]="alertType" role="alert">
       {{alertMessage}}
       <button type="button" class="btn-close" aria-label="Close" (click)="CloseAlert()"></button>
     </div>
   </div> -->
-  <div class="mt-5 cxScroll"
-    style="height: 75vh !important;background: #fff;overflow-y: scroll;overflow-x: hidden;width:85%;">
-    <app-data-table [dataArray]="patientList" [cols]="colHeaders" *ngIf="showTable"></app-data-table>
+    <div class="mt-5 cxScroll"
+      style="height: 75vh !important;background: #fff;overflow-y: scroll;overflow-x: hidden;width:85%;">
+      <app-data-table [dataArray]="patientList" [cols]="colHeaders" *ngIf="showTable"></app-data-table>
+    </div>
   </div>
 </div>
 <div id="abc" class="containerCustom" *ngIf="showInExcel">

@@ -18,7 +18,7 @@ export class DashboardComponent {
   showLoader: boolean = true;
   showAlert: boolean = false;
   showInExcel: boolean = false;
-  showTable: boolean = false;
+  showTable: boolean = true;
   alertType: string = 'alert alert-dismissible fade show';
   alertMessage: string = '';
   patientList: Array<Patient> = [];
@@ -34,10 +34,8 @@ export class DashboardComponent {
 
 
 
-  constructor(private apiService: MasterApiService, private messageService: MessageService,private router:Router) { }
+  constructor(private apiService: MasterApiService, private messageService: MessageService, private router: Router) { }
   ngOnInit() {
-    // this.tempArray = ['One','Two','Three','Four'];
-    // this.cols = ['ColsOne','ColsTwo','ColsThree','ColsFour'];
     this.hotid = 'gridId';
     this.InitializeGridControls();
     this.colHeaders = [
@@ -127,9 +125,6 @@ export class DashboardComponent {
       ]
     }
   }
-  Docker(){
-    this.router.navigateByUrl('dashboard/docker');
-  }
   GetAllPatients(x: boolean) {
     if (x)
       this.showTable = true;
@@ -162,8 +157,7 @@ export class DashboardComponent {
         this.showAlert = false;
       }, 3000);
       this.alertMessage = this.patientList.length + ' Records Loaded Successfully ! Time taken : ' + timer + ' milliseconds.';
-      this.messageService.add({ severity: 'success', summary: 'API Response', detail: this.patientList.length + ' Records Loaded successfully ! Time taken : ' + timer + ' milliseconds.' });
-      //sticky: true,
+      this.messageService.add({ sticky: true, severity: 'success', summary: 'API Response', detail: this.patientList.length + ' Records Loaded successfully ! Time taken : ' + timer + ' milliseconds.' });
       this.showAlert = true;
     }, (error: any) => {
       this.alertType = this.alertType + ' alert-danger';
@@ -172,14 +166,21 @@ export class DashboardComponent {
       this.showLoader = false;
     });
   }
+  Docker() {
+    this.router.navigateByUrl('dashboard/docker');
+  }
   ViewInExcel() {
     this.GetAllPatients(false);
     this.showInExcel = true;
     //if(this.hotRegisterer.getInstance(this.hotid).isEmptyRow(1)){
     //debugger;
     setTimeout(() => {
-      if (this.hotRegisterer.getInstance(this.hotid).countEmptyRows() <= 4) {
+      if (this.patientList.length > 0)
         this.hotRegisterer.getInstance(this.hotid).updateSettings({ data: this.patientList });
+      else {
+        setTimeout(() => {
+          this.hotRegisterer.getInstance(this.hotid).updateSettings({ data: this.patientList });
+        }, 1000);
       }
     }, 100);
   }

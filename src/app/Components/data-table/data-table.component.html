@@ -1,6 +1,6 @@
 <p-toast></p-toast>
 <div class="card">
-    <p-toolbar styleClass="mb-4 gap-2">
+    <p-toolbar styleClass="mb-1">
         <ng-template pTemplate="left">
             <button pButton pRipple label="New" icon="pi pi-plus" class="p-button-sm p-button-success"
                 style="margin: 2px;" (click)="openNew()"></button>
@@ -17,14 +17,14 @@
     </p-toolbar>
 
     <p-table #dt [value]="dataArray" [rows]="10" [paginator]="true"
-        [globalFilterFields]="['name','country.name','representative.name','status']"
+        [globalFilterFields]="['FirstName','LastName','EmailAddress','CellPhone']"
         [tableStyle]="{'min-width': '75rem'}" [(selection)]="selectedProducts" [rowHover]="true" dataKey="id"
         currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [showCurrentPageReport]="true">
         <ng-template pTemplate="caption">
-            <div style="display: flex;flex-direction: row-reverse;">
-                <span class="p-input-icon-left">
+            <div style="display: flex;flex-direction: row-reverse;height: 20px;">
+                <span class="p-input-icon-left" style="height: 25px !important;">
                     <i class="pi pi-search"></i>
-                    <input pInputText #searchBox type="text" placeholder="Search..."
+                    <input pInputText #searchBox type="text" placeholder="Search..." style="height: 25px !important;"
                         (input)="dt.filterGlobal(searchBox.value, 'contains')" />
                 </span>
             </div>
@@ -44,7 +44,7 @@
         <ng-template pTemplate="body" let-patient>
             <tr>
                 <td>{{patient.FirstName + ' ' +patient.LastName}}</td>
-                <td><i class="fa fa-user"></i>{{patient.EmailAddress}}</td>
+                <td><i class="fa fa-fw fa-user"></i>{{patient.EmailAddress}}</td>
                 <td>{{patient.Gender}}</td>
                 <td>{{patient.MaritalStatus}}</td>
                 <td>{{patient.Languages}}</td>
