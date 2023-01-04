@@ -6,29 +6,49 @@
                 <p-header>
                     Login Form
                 </p-header>
-                <form>
+                <form [formGroup]="loginFormGroup" (ngSubmit)="login()">
                     <div class="grid p-fluid">
                         <div class="col-12 md:col-12">
                             <div class="p-inputgroup">
                                 <span class="p-inputgroup-addon"><i class="pi pi-user"></i></span>
-                                <input type="text" pInputText placeholder="Username">
+                                <input type="text" pInputText name="Name" id="Name" placeholder="Username"
+                                    formControlName="Name" [class.valid]="f['Name'].valid && 
+                                f['Name'].dirty || f['Name'].touched"
+                                    [class.invalid]="f['Name'].invalid && f['Name'].dirty || f['Name'].touched">
+                            </div>
+                            <div *ngIf="f['Name'].invalid" class="text-danger" style="text-align: right;width: 100%;">
+                                <div *ngIf="f['Name'].touched && f['Name'].errors">Name is required*</div>
                             </div>
                         </div>
                         <div class="col-12 md:col-12">
                             <div class="p-inputgroup">
                                 <span class="p-inputgroup-addon"><i class="fa fa-envelope"></i></span>
-                                <input type="email" pInputText placeholder="Email">
+                                <input type="email" pInputText name="Email" id="Email" placeholder="Email ID"
+                                    formControlName="Email" [class.valid]="f['Email'].valid && 
+                                f['Email'].dirty || f['Email'].touched"
+                                    [class.invalid]="f['Email'].invalid && f['Email'].dirty || f['Email'].touched">
+                            </div>
+                            <div *ngIf="f['Email'].invalid" class="text-danger" style="text-align: right;width: 100%;">
+                                <div *ngIf="f['Email'].touched && f['Email'].errors">Email is required*</div>
                             </div>
                         </div>
                         <div class="col-12 md:col-12">
-                                <div class="p-inputgroup">
-                                    <span class="p-inputgroup-addon"><i class="fa fa-eye"></i></span>
-                                    <input type="password" pInputText placeholder="Password">
-                                </div>
+                            <div class="p-inputgroup">
+                                <span class="p-inputgroup-addon"><i class="fa fa-eye"></i></span>
+                                <input type="password" pInputText name="Password" id="Password" placeholder="Password"
+                                    formControlName="Password" [class.valid]="f['Password'].valid && 
+                                f['Password'].dirty || f['Password'].touched"
+                                    [class.invalid]="f['Password'].invalid && f['Password'].dirty || f['Password'].touched">
                             </div>
+                            <div *ngIf="f['Password'].touched" class="text-danger" style="text-align: right;width: 100%;">
+                                <div *ngIf="f['Password'].touched && f['Password'].hasError('required')">Password is required*</div>
+                                <div *ngIf="f['Password'].touched && f['Password'].hasError('minlength')">Password should be min 8 chars Length*</div>
+                                <div *ngIf="f['Password'].touched && f['Password'].hasError('maxlength')">Password should be max 20 chars Length*</div>
+                            </div>
+                        </div>
                         <div class="col-12 md:col-12">
                             <div style="display: flex;margin: auto;width: 50%;">
-                                <button pButton type="button" label="Submit" icon="pi pi-check" class="p-button-sm" (click)="login()"></button>
+                                <button pButton type="submit" label="Submit" icon="pi pi-check" [disabled]="loginFormGroup.invalid" class="p-button-sm"></button>
                             </div>
                         </div>
                     </div>

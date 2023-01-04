@@ -9,6 +9,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LoginComponent } from './Components/login/login.component';
 import { RegisterComponent } from './Components/register/register.component';
 import { DashboardModule } from './Modules/dashboard.module';
+import { FormsModule,ReactiveFormsModule } from '@angular/forms';
 
 //registerAllModules();
 
@@ -17,6 +18,8 @@ import { DashboardModule } from './Modules/dashboard.module';
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
+    ReactiveFormsModule,
+    FormsModule,
     HttpClientModule,
     AppRoutingModule,
     HotTableModule,

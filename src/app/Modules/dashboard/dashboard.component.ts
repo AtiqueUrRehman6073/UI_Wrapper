@@ -157,7 +157,8 @@ export class DashboardComponent {
         this.showAlert = false;
       }, 3000);
       this.alertMessage = this.patientList.length + ' Records Loaded Successfully ! Time taken : ' + timer + ' milliseconds.';
-      this.messageService.add({ sticky: true, severity: 'success', summary: 'API Response', detail: this.patientList.length + ' Records Loaded successfully ! Time taken : ' + timer + ' milliseconds.' });
+      this.messageService.add({ severity: 'success', summary: 'API Response', detail: this.patientList.length + ' Records Loaded successfully ! Time taken : ' + timer + ' milliseconds.' });
+      //sticky: true, 
       this.showAlert = true;
     }, (error: any) => {
       this.alertType = this.alertType + ' alert-danger';
