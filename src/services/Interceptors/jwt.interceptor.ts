@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {HttpRequest,HttpHandler,HttpEvent,HttpInterceptor} from '@angular/common/http';
+import {HttpRequest,HttpHandler,HttpEvent,HttpInterceptor, HttpHeaders} from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { UserAuthService } from '../userAuth/user-auth.service';
 
@@ -12,15 +12,15 @@ export class JwtInterceptor implements HttpInterceptor {
       // add authorization header with jwt token if available  
       let currentUser = this.authenticationService.currentUserValue;  
       console.log('This is JWT Current User : ',currentUser);
+      var headers;
       if (currentUser && currentUser.Token) { 
-          debugger; 
-          request = request.clone({  
-              setHeaders: {  
-                  Authorization: `Bearer ${currentUser.Token}`,  
-                  Role: "admin",  
-                  Host: "https://localhost://44370"  
-              }  
-          });  
+          //debugger;
+          headers = new HttpHeaders({
+            'Authorization': `Bearer ${currentUser.Token}`,
+            'Access-Control-Allow-Origin': '*'
+          }); 
+          request = request.clone({headers});//.headers.append('Authorization',`Bearer ${currentUser.Token}`);  
+          //request.headers.set('Authorization', `Bearer ${currentUser.Token}`);
       }  
       return next.handle(request);  
   }  

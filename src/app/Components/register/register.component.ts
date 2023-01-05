@@ -11,7 +11,9 @@ import { MessageService } from 'primeng/api';
   providers: [MessageService]
 })
 export class RegisterComponent {
-  showPass: boolean = false;
+  passHidden: boolean = true;
+  passMatch: boolean = false;
+  passType: string = 'password';
   registerFormGroup: FormGroup;
   registerData = { Name: '', Password: '', Email: '' };
   constructor(private router: Router, private _authservice: UserAuthService, private messageService: MessageService) {
@@ -29,9 +31,19 @@ export class RegisterComponent {
 
   }
   toggleShowPass() {
-    this.showPass = !this.showPass;
+    if (this.passHidden)
+      this.passType = 'text';
+    else
+      this.passType = 'password';
+    this.passHidden = !this.passHidden;
   }
-  toLogin(){
+  matchPass(pass: string, cPass: string) {
+    if (pass === cPass)
+      this.passMatch = true;
+    else
+      this.passMatch = false;
+  }
+  toLogin() {
     this.router.navigateByUrl('/login');
   }
   register() {

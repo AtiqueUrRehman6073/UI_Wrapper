@@ -34,11 +34,11 @@
                         </div>
                         <div class="col-12 md:col-12">
                             <div class="p-inputgroup">
-                                <span class="p-inputgroup-addon" style="cursor: pointer;" *ngIf="showPass" (click)="toggleShowPass()"><i
+                                <span class="p-inputgroup-addon" style="cursor: pointer;" *ngIf="!passHidden" (click)="toggleShowPass()"><i
                                         class="pi pi-eye"></i></span>
-                                <span class="p-inputgroup-addon" style="cursor: pointer;" *ngIf="!showPass" (click)="toggleShowPass()"><i
+                                <span class="p-inputgroup-addon" style="cursor: pointer;" *ngIf="passHidden" (click)="toggleShowPass()"><i
                                         class="pi pi-eye-slash"></i></span>
-                                <input type="password" pInputText name="Password" id="Password" placeholder="Password"
+                                <input [type]="passType" #password pInputText (input)="matchPass(password.value,cPass.value)" name="Password" id="Password" placeholder="Password"
                                     formControlName="Password" [class.valid]="f['Password'].valid && 
                                     f['Password'].dirty || f['Password'].touched"
                                     [class.invalid]="f['Password'].invalid && f['Password'].dirty || f['Password'].touched">
@@ -56,7 +56,7 @@
                         <div class="col-12 md:col-12">
                             <div class="p-inputgroup">
                                 <span class="p-inputgroup-addon"><i class="pi pi-sync"></i></span>
-                                <input type="password" pInputText name="ConfirmPassword" id="ConfirmPassword"
+                                <input [type]="passType" #cPass pInputText name="ConfirmPassword" id="ConfirmPassword" (input)="matchPass(password.value,cPass.value)"
                                     placeholder="Confirm Password" formControlName="ConfirmPassword" [class.valid]="f['ConfirmPassword'].valid && 
                                         f['ConfirmPassword'].dirty || f['ConfirmPassword'].touched"
                                     [class.invalid]="f['ConfirmPassword'].invalid && f['ConfirmPassword'].dirty || f['ConfirmPassword'].touched">
@@ -70,6 +70,10 @@
                                 <div *ngIf="f['ConfirmPassword'].touched && f['ConfirmPassword'].hasError('maxlength')">
                                     Password should be max 20 chars Length*</div>
                             </div>
+                            <span class="pi pi-check-circle" *ngIf="passMatch" style="float: right;margin: 10px;color: #4ecc28;" title="Password Matched !"></span>
+                            <span class="pi pi-times-circle blink" *ngIf="!passMatch" style="float: right;margin: 10px;color: #ff0000;" title="Password does not match*"></span>
+                            <app-password-strength-bar [passwordToCheck]="password.value" [barLabel]="'Password Strength :'">  
+                            </app-password-strength-bar>  
                         </div>
                         <div class="col-12 md:col-12">
                             <div style="display: flex;margin: auto;width: 50%;">
