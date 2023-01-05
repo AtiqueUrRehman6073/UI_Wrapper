@@ -1,80 +1,91 @@
 <p-card>
-        <div class="grid" style="height: 100vh;">
-            <div class="xl:col-4 lg:col-4 sm:col-1"></div>
-            <div class="xl:col-4 lg:col-4 sm:col-10">
-                <p-panel>
-                    <p-header>
-                        Create Account
-                    </p-header>
-                    <form [formGroup]="registerFormGroup" (ngSubmit)="register()">
-                        <div class="grid p-fluid">
-                            <div class="col-12 md:col-12">
-                                <div class="p-inputgroup">
-                                    <span class="p-inputgroup-addon"><i class="pi pi-user"></i></span>
-                                    <input type="text" pInputText name="Name" id="Name" placeholder="Username"
-                                        formControlName="Name" [class.valid]="f['Name'].valid && 
+    <div class="grid" style="height: 100vh;">
+        <div class="xl:col-4 lg:col-4 sm:col-1"></div>
+        <div class="xl:col-4 lg:col-4 sm:col-10">
+            <p-panel>
+                <p-header>
+                    Create Account
+                </p-header>
+                <form [formGroup]="registerFormGroup" (ngSubmit)="register()">
+                    <div class="grid p-fluid">
+                        <div class="col-12 md:col-12">
+                            <div class="p-inputgroup">
+                                <span class="p-inputgroup-addon"><i class="pi pi-user"></i></span>
+                                <input type="text" pInputText name="Name" id="Name" placeholder="Username"
+                                    formControlName="Name" [class.valid]="f['Name'].valid && 
                                     f['Name'].dirty || f['Name'].touched"
-                                        [class.invalid]="f['Name'].invalid && f['Name'].dirty || f['Name'].touched">
-                                </div>
-                                <div *ngIf="f['Name'].invalid" class="text-danger" style="text-align: right;width: 100%;">
-                                    <div *ngIf="f['Name'].touched && f['Name'].errors">Name is required*</div>
-                                </div>
+                                    [class.invalid]="f['Name'].invalid && f['Name'].dirty || f['Name'].touched">
                             </div>
-                            <div class="col-12 md:col-12">
-                                <div class="p-inputgroup">
-                                    <span class="p-inputgroup-addon"><i class="pi pi-envelope"></i></span>
-                                    <input type="email" pInputText name="Email" id="Email" placeholder="Email ID"
-                                        formControlName="Email" [class.valid]="f['Email'].valid && 
+                            <div *ngIf="f['Name'].invalid" class="text-danger" style="text-align: right;width: 100%;">
+                                <div *ngIf="f['Name'].touched && f['Name'].errors">Name is required*</div>
+                            </div>
+                        </div>
+                        <div class="col-12 md:col-12">
+                            <div class="p-inputgroup">
+                                <span class="p-inputgroup-addon"><i class="pi pi-envelope"></i></span>
+                                <input type="email" pInputText name="Email" id="Email" placeholder="Email ID"
+                                    formControlName="Email" [class.valid]="f['Email'].valid && 
                                     f['Email'].dirty || f['Email'].touched"
-                                        [class.invalid]="f['Email'].invalid && f['Email'].dirty || f['Email'].touched">
-                                </div>
-                                <div *ngIf="f['Email'].invalid" class="text-danger" style="text-align: right;width: 100%;">
-                                    <div *ngIf="f['Email'].touched && f['Email'].errors">Email is required*</div>
-                                </div>
+                                    [class.invalid]="f['Email'].invalid && f['Email'].dirty || f['Email'].touched">
                             </div>
-                            <div class="col-12 md:col-12">
-                                <div class="p-inputgroup">
-                                    <span class="p-inputgroup-addon" *ngIf="!showPass" (click)="toggleShowPass()"><i class="pi pi-eye"></i></span>
-                                    <span class="p-inputgroup-addon" *ngIf="showPass" (click)="toggleShowPass()"><i class="pi pi-eye-slash"></i></span>
-                                    <input type="password" pInputText name="Password" id="Password" placeholder="Password"
-                                        formControlName="Password" [class.valid]="f['Password'].valid && 
+                            <div *ngIf="f['Email'].invalid" class="text-danger" style="text-align: right;width: 100%;">
+                                <div *ngIf="f['Email'].touched && f['Email'].errors">Email is required*</div>
+                            </div>
+                        </div>
+                        <div class="col-12 md:col-12">
+                            <div class="p-inputgroup">
+                                <span class="p-inputgroup-addon" style="cursor: pointer;" *ngIf="showPass" (click)="toggleShowPass()"><i
+                                        class="pi pi-eye"></i></span>
+                                <span class="p-inputgroup-addon" style="cursor: pointer;" *ngIf="!showPass" (click)="toggleShowPass()"><i
+                                        class="pi pi-eye-slash"></i></span>
+                                <input type="password" pInputText name="Password" id="Password" placeholder="Password"
+                                    formControlName="Password" [class.valid]="f['Password'].valid && 
                                     f['Password'].dirty || f['Password'].touched"
-                                        [class.invalid]="f['Password'].invalid && f['Password'].dirty || f['Password'].touched">
-                                </div>
-                                <div *ngIf="f['Password'].touched" class="text-danger" style="text-align: right;width: 100%;">
-                                    <div *ngIf="f['Password'].touched && f['Password'].hasError('required')">Password is required*</div>
-                                    <div *ngIf="f['Password'].touched && f['Password'].hasError('minlength')">Password should be min 8 chars Length*</div>
-                                    <div *ngIf="f['Password'].touched && f['Password'].hasError('maxlength')">Password should be max 20 chars Length*</div>
-                                </div>
+                                    [class.invalid]="f['Password'].invalid && f['Password'].dirty || f['Password'].touched">
                             </div>
-                            <div class="col-12 md:col-12">
-                                    <div class="p-inputgroup">
-                                        <span class="p-inputgroup-addon"><i class="pi pi-sync"></i></span>
-                                        <input type="password" pInputText name="ConfirmPassword" id="ConfirmPassword" placeholder="Confirm Password"
-                                            formControlName="ConfirmPassword" [class.valid]="f['ConfirmPassword'].valid && 
+                            <div *ngIf="f['Password'].touched" class="text-danger"
+                                style="text-align: right;width: 100%;">
+                                <div *ngIf="f['Password'].touched && f['Password'].hasError('required')">Password is
+                                    required*</div>
+                                <div *ngIf="f['Password'].touched && f['Password'].hasError('minlength')">Password
+                                    should be min 8 chars Length*</div>
+                                <div *ngIf="f['Password'].touched && f['Password'].hasError('maxlength')">Password
+                                    should be max 20 chars Length*</div>
+                            </div>
+                        </div>
+                        <div class="col-12 md:col-12">
+                            <div class="p-inputgroup">
+                                <span class="p-inputgroup-addon"><i class="pi pi-sync"></i></span>
+                                <input type="password" pInputText name="ConfirmPassword" id="ConfirmPassword"
+                                    placeholder="Confirm Password" formControlName="ConfirmPassword" [class.valid]="f['ConfirmPassword'].valid && 
                                         f['ConfirmPassword'].dirty || f['ConfirmPassword'].touched"
-                                            [class.invalid]="f['ConfirmPassword'].invalid && f['ConfirmPassword'].dirty || f['ConfirmPassword'].touched">
-                                    </div>
-                                    <div *ngIf="f['ConfirmPassword'].touched" class="text-danger" style="text-align: right;width: 100%;">
-                                        <div *ngIf="f['ConfirmPassword'].touched && f['ConfirmPassword'].hasError('required')">Confirm Password is required*</div>
-                                        <div *ngIf="f['ConfirmPassword'].touched && f['ConfirmPassword'].hasError('minlength')">Password should be min 8 chars Length*</div>
-                                        <div *ngIf="f['ConfirmPassword'].touched && f['ConfirmPassword'].hasError('maxlength')">Password should be max 20 chars Length*</div>
-                                    </div>
-                                </div>
-                            <div class="col-12 md:col-12">
-                                <div style="display: flex;margin: auto;width: 50%;">
-                                    <button pButton type="submit" label="Submit" icon="pi pi-check" [disabled]="registerFormGroup.invalid" class="p-button-sm"></button>
-                                </div>
+                                    [class.invalid]="f['ConfirmPassword'].invalid && f['ConfirmPassword'].dirty || f['ConfirmPassword'].touched">
+                            </div>
+                            <div *ngIf="f['ConfirmPassword'].touched" class="text-danger"
+                                style="text-align: right;width: 100%;">
+                                <div *ngIf="f['ConfirmPassword'].touched && f['ConfirmPassword'].hasError('required')">
+                                    Confirm Password is required*</div>
+                                <div *ngIf="f['ConfirmPassword'].touched && f['ConfirmPassword'].hasError('minlength')">
+                                    Password should be min 8 chars Length*</div>
+                                <div *ngIf="f['ConfirmPassword'].touched && f['ConfirmPassword'].hasError('maxlength')">
+                                    Password should be max 20 chars Length*</div>
                             </div>
                         </div>
-                    </form>
-                    <div style="text-align: center;">
-                            <b>OR</b>
-                            <p style="cursor:pointer" (click)="toLogin()">Already have an Account..?</p>
+                        <div class="col-12 md:col-12">
+                            <div style="display: flex;margin: auto;width: 50%;">
+                                <button pButton type="submit" label="Submit" icon="pi pi-check"
+                                    [disabled]="registerFormGroup.invalid" class="p-button-sm"></button>
+                            </div>
                         </div>
-                </p-panel>
-            </div>
-            <div class="xl:col-4 lg:col-4 sm:col-1"></div>
+                    </div>
+                </form>
+                <div style="text-align: center;">
+                    <b>OR</b>
+                    <p style="cursor:pointer" (click)="toLogin()">Already have an Account..?</p>
+                </div>
+            </p-panel>
         </div>
-        <p-toast></p-toast>
-    </p-card>
+        <div class="xl:col-4 lg:col-4 sm:col-1"></div>
+    </div>
+    <p-toast></p-toast>
+</p-card>

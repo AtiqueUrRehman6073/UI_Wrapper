@@ -1,5 +1,5 @@
 export interface userModel{
-    token?:string,
+    Token?:string,
     Id?:number,
     Name?: string,
     Email: string,

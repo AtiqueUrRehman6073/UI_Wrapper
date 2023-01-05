@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HotTableModule } from '@handsontable/angular';
@@ -10,6 +10,8 @@ import { LoginComponent } from './Components/login/login.component';
 import { RegisterComponent } from './Components/register/register.component';
 import { DashboardModule } from './Modules/dashboard.module';
 import { FormsModule,ReactiveFormsModule } from '@angular/forms';
+import { JwtInterceptor } from 'src/services/Interceptors/jwt.interceptor';
+import { TokenInterceptor } from 'src/services/Interceptors/token.interceptor';
 
 //registerAllModules();
 
@@ -26,7 +28,18 @@ import { FormsModule,ReactiveFormsModule } from '@angular/forms';
     PrimeModule,
     DashboardModule
   ],
-  providers: [],
+  providers: [
+    {
+      provide:HTTP_INTERCEPTORS,
+      useClass:JwtInterceptor,
+      multi:true
+    },
+    {
+      provide:HTTP_INTERCEPTORS,
+      useClass:TokenInterceptor,
+      multi:true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

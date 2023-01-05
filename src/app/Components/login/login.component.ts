@@ -13,6 +13,7 @@ import { UserAuthService } from 'src/services/userAuth/user-auth.service';
 export class LoginComponent implements OnInit {
 
   loginFormGroup: FormGroup;
+  showPass:boolean = false;
   loginData = { Name: '', Password: '',Email:''};  
   constructor(private router: Router, private _authservice: UserAuthService, private messageService:MessageService) {
     // redirect to paidEvents if already logged in  
@@ -33,6 +34,11 @@ export class LoginComponent implements OnInit {
     this.router.navigateByUrl('/register');
   }
   login() {  
+    this.loginData = {
+      Name :this.loginFormGroup.controls["Name"].value,
+      Email :this.loginFormGroup.controls["Email"].value,
+      Password :this.loginFormGroup.controls["Password"].value
+    }
     console.log('login called from login Component');  
     this._authservice.login(this.loginData).subscribe(  
       (data:any) => {  
@@ -49,6 +55,9 @@ export class LoginComponent implements OnInit {
         console.log("erorr: ", error);  
       }  
     );
+  }
+  toggleShowPass() {
+    this.showPass = !this.showPass;
   }
   get f() {
     return this.loginFormGroup.controls;

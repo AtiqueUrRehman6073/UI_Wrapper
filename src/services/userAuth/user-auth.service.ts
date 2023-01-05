@@ -17,13 +17,22 @@ export class UserAuthService {
   private _loginUrl = urls.UserAuth;
   private _registerUrl = urls.UserSignup;
   constructor(private http: HttpClient) {
-    let x = sessionStorage.getItem('currentuser');
-    this.currentUserSubject = new BehaviorSubject<any>(sessionStorage.getItem('currentUser') == null || sessionStorage.getItem('currentUser') == undefined ? "" : x == null ? "" : x);
+    let x = sessionStorage.getItem('currentUser');
+    console.log('Sesstion Storage Item : ', sessionStorage.getItem('currentUser'));
+    this.currentUserSubject = new BehaviorSubject<any>(x == null || x == undefined ? { Name: '', Email: '', Password: '', Token: null } : x);
+    console.log('This is current User Subject : ', this.currentUserSubject);
     this.currentUser = this.currentUserSubject.asObservable();
+    console.log('Current User Value Is :::::===>  ', this.currentUser);
   }
 
   get currentUserValue() {
-    return this.currentUserSubject.value;
+    let r = sessionStorage.getItem('currentUser');
+    var x;
+    if (typeof r == 'string')
+      x = JSON.parse(r == null ? "" : r);
+    else
+      x = r;
+    return x;
   }
 
   getAuthToken() {
@@ -33,7 +42,7 @@ export class UserAuthService {
     return this.http.post<any>(this.baseUrl + this._registerUrl, user, { responseType: 'json' });
   }
   login(user: userModel) {
-    console.log('Login Called from Auth service ...');
+    console.log('Login Called from Auth service ...', user);
     return this.http.post<any>(this.baseUrl + this._loginUrl, user);
   }
 

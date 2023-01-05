@@ -11,10 +11,12 @@ export class JwtInterceptor implements HttpInterceptor {
       console.log("Intercept method called from JWTInterceptor..");  
       // add authorization header with jwt token if available  
       let currentUser = this.authenticationService.currentUserValue;  
-      if (currentUser && currentUser.token) {  
+      console.log('This is JWT Current User : ',currentUser);
+      if (currentUser && currentUser.Token) { 
+          debugger; 
           request = request.clone({  
               setHeaders: {  
-                  Authorization: `Bearer ${currentUser.token}`,  
+                  Authorization: `Bearer ${currentUser.Token}`,  
                   Role: "admin",  
                   Host: "https://localhost://44370"  
               }  

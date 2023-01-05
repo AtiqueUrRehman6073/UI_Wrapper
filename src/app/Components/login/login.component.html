@@ -22,7 +22,7 @@
                         </div>
                         <div class="col-12 md:col-12">
                             <div class="p-inputgroup">
-                                <span class="p-inputgroup-addon"><i class="fa fa-envelope"></i></span>
+                                <span class="p-inputgroup-addon"><i class="pi pi-envelope"></i></span>
                                 <input type="email" pInputText name="Email" id="Email" placeholder="Email ID"
                                     formControlName="Email" [class.valid]="f['Email'].valid && 
                                 f['Email'].dirty || f['Email'].touched"
@@ -34,7 +34,8 @@
                         </div>
                         <div class="col-12 md:col-12">
                             <div class="p-inputgroup">
-                                <span class="p-inputgroup-addon"><i class="fa fa-eye"></i></span>
+                                <span class="p-inputgroup-addon" (click)="toggleShowPass()" style="cursor: pointer;" *ngIf="showPass"><i class="pi pi-eye"></i></span>
+                                <span class="p-inputgroup-addon" (click)="toggleShowPass()" style="cursor: pointer;" *ngIf="!showPass"><i class="pi pi-eye-slash"></i></span>
                                 <input type="password" pInputText name="Password" id="Password" placeholder="Password"
                                     formControlName="Password" [class.valid]="f['Password'].valid && 
                                 f['Password'].dirty || f['Password'].touched"
