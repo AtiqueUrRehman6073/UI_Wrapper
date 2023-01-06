@@ -9,10 +9,10 @@ body {
     background: rgba(211, 211, 211, 0.1);
 }
 
-body::-webkit-scrollbar{
+/* body::-webkit-scrollbar{
     display: none;
-}
-.cxScroll::-webkit-scrollbar {
+} */
+body *::-webkit-scrollbar {
     width: 7px;
     height: 7px !important;
     border-radius: 20px;
@@ -20,7 +20,7 @@ body::-webkit-scrollbar{
     background-color: rgba(47, 144, 201, 0.452);
     /* or add it to the track */
 }
-.cxScroll::-webkit-scrollbar-thumb {
+body *::-webkit-scrollbar-thumb {
     border-radius: 20px;
     background: rgba(47, 144, 201, 0.952);
   }
