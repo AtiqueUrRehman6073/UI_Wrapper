@@ -14,6 +14,7 @@ export class LoginComponent implements OnInit {
 
   loginFormGroup: FormGroup;
   showPass:boolean = false;
+  showLoader:boolean = false;
   loginData = { Name: '', Password: '',Email:''};  
   constructor(private router: Router, private _authservice: UserAuthService, private messageService:MessageService) {
     // redirect to paidEvents if already logged in  
@@ -34,6 +35,7 @@ export class LoginComponent implements OnInit {
     this.router.navigateByUrl('/register');
   }
   login() {  
+    this.showLoader = true;
     this.loginData = {
       Name :this.loginFormGroup.controls["Name"].value,
       Email :this.loginFormGroup.controls["Email"].value,

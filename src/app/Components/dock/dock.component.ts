@@ -35,9 +35,9 @@ export class DockComponent implements OnInit {
 
     files: Array<TreeNode> = [];
     files1: Array<TreeNode> = [];
+    subscription: any;
 
-
-    constructor(private messageService: MessageService,private nodeService:NodeService) { }
+    constructor(private messageService: MessageService,private nodeService:NodeService,private terminalService:TerminalService) { }
 
     ngOnInit() {
         this.dockBasicItems = [
@@ -280,6 +280,9 @@ export class DockComponent implements OnInit {
             }
         ];
         this.loading = false;
+        this.subscription = this.terminalService.commandHandler.subscribe((command:any) => this.commandHandler(command));
+
+        //this.galleriaService.getImages().then((data:any) => this.images = data);
         this.nodeService.getFiles().then((file:any) => this.files1 = file);
         this.nodeService.getFiles().then((files:any) => {
             this.files = [{
@@ -298,7 +301,33 @@ export class DockComponent implements OnInit {
     nodeSelect(event: any) {
         this.messageService.add({ severity: 'info', summary: 'Node Selected', detail: event.node.label });
     }
+    commandHandler(text:any) {
+        let response;
+        let argsIndex = text.indexOf(' ');
+        let command = argsIndex !== -1 ? text.substring(0, argsIndex) : text;
 
+        switch (command) {
+            case 'date':
+                response = 'Today is ' + new Date().toDateString();
+                break;
+
+            case 'greet':
+                response = 'Hola ' + text.substring(argsIndex + 1) + '!';
+                break;
+
+            case 'random':
+                response = String(Math.floor(Math.random() * 100));
+                break;
+
+            default:
+                response = 'Unknown command: ' + command;
+                break;
+        }
+
+        if (response) {
+            this.terminalService.sendResponse(response);
+        }
+    }
     nodeUnselect(event: any) {
         this.messageService.add({ severity: 'info', summary: 'Node Unselected', detail: event.node.label });
     }

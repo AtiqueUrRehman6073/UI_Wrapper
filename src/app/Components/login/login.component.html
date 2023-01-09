@@ -1,3 +1,6 @@
+<div class="customLoader" *ngIf="showLoader">
+    <app-loader></app-loader>
+</div>
 <p-card>
     <div class="grid" style="height: 100vh;">
         <div class="xl:col-4 lg:col-4 sm:col-1"></div>
@@ -34,8 +37,10 @@
                         </div>
                         <div class="col-12 md:col-12">
                             <div class="p-inputgroup">
-                                <span class="p-inputgroup-addon" (click)="toggleShowPass()" style="cursor: pointer;" *ngIf="showPass"><i class="pi pi-eye"></i></span>
-                                <span class="p-inputgroup-addon" (click)="toggleShowPass()" style="cursor: pointer;" *ngIf="!showPass"><i class="pi pi-eye-slash"></i></span>
+                                <span class="p-inputgroup-addon" (click)="toggleShowPass()" style="cursor: pointer;"
+                                    *ngIf="showPass"><i class="pi pi-eye"></i></span>
+                                <span class="p-inputgroup-addon" (click)="toggleShowPass()" style="cursor: pointer;"
+                                    *ngIf="!showPass"><i class="pi pi-eye-slash"></i></span>
                                 <input type="password" pInputText name="Password" id="Password" placeholder="Password"
                                     formControlName="Password" [class.valid]="f['Password'].valid && 
                                 f['Password'].dirty || f['Password'].touched"

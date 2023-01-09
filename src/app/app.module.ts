@@ -13,11 +13,12 @@ import { FormsModule,ReactiveFormsModule } from '@angular/forms';
 import { JwtInterceptor } from 'src/services/Interceptors/jwt.interceptor';
 import { TokenInterceptor } from 'src/services/Interceptors/token.interceptor';
 import { PasswordStrengthBarComponent } from './Components/password-strength-bar/password-strength-bar.component';
+import { LoaderComponent } from './Components/loader/loader.component';
 
 //registerAllModules();
 
 @NgModule({
-  declarations: [AppComponent,LoginComponent,RegisterComponent, PasswordStrengthBarComponent],
+  declarations: [AppComponent,LoginComponent,RegisterComponent, PasswordStrengthBarComponent, LoaderComponent],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
