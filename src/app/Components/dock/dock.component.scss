@@ -1,20 +1,18 @@
 :host ::ng-deep {
         .dock-window {
             width: 100%;
-            height: 107%;
+            height: 100vh;
             position: relative;
             background-image: url('../../../assets/Dock/window.jpg');
             background-repeat: no-repeat;
             background-size: cover;
         }
-
         .p-tree{
             padding: 1px !important;
         }
         .p-dock {
             z-index: 1000;
         }
-
         .dock-advanced {
             .p-dialog-mask,
             .p-toast {
@@ -96,7 +94,10 @@
                 }
             }
         }
-
+        .p-treenode-icon{
+            color: rgb(28, 143, 250) !important;
+            transform: scale(1.15);
+        }
     .dark-tooltip {
         .p-tooltip {
             .p-tooltip-arrow {
@@ -121,6 +122,39 @@
         background: transparent !important;   
         border: none !important; 
     }
+    .p-menuitem:hover{
+        background-color:transparent !important;
+    }
+    .p-menuitem *:hover{
+        color: #000000 !important;
+    }
+    .p-menuitem:hover{
+        background-color: rgba(237, 240, 238,0.30) !important;
+    }
+    .p-menuitem-text:hover{
+        background-color: transparent;
+    }
+    .p-menuitem-icon{
+        color: #ffffff !important;
+    }
+    .p-menuitem-link{
+        background: transparent !important;
+        padding: 0px !important;
+    }
+    .p-menuitem-text{
+        padding: 12px;
+        margin:0px !important;
+        color: #ffffff !important;
+    }
+    .p-submenu-list{
+        background-color: rgba(237, 240, 238,0.30) !important;
+    }
+}
+.menuBarHolder{
+    position: absolute;
+    top:0%;
+    width: 100%;
+    //z-index: 10000;
 }
 .sideBarFiles{
     padding-left: 15px !important;
@@ -128,32 +162,73 @@
     min-width: 306px;
     max-width: 400px;
     width: fit-content;
-    padding-top: 40px;
+    padding-top: 20px;
+}
+.colHolder::-webkit-scrollbar{
+    visibility: hidden;
+    display: none;
 }
 .colHolder{
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     border-right: 2px solid lightgrey;
     background: rgba(211, 211, 211, 0.150) !important; 
-    height: 93vh;
-    width: fit-content !important;
+    height: 96vh;
+    overflow-y: scroll;
     padding: 0%;  
+    margin-top: 0%;
+    padding-top: 100px;
 }
 .closeIcons{
     width: 20px !important;
     height: 20px !important;
 }
 .closer{
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     min-width: 300px;
     border-right: 2px solid lightgrey;
     border-top-left-radius: 5%;
     max-width: 300px;
-    background: rgba(211, 211, 211, 0.350) !important;
     position: absolute;
     top:0px;
-    padding: 3px 3px 3px 15px;
+    padding: 18px 3px 18px 25px;
 }
-
-
-
+.fileWindow{
+    width: calc(100% - 320px);
+    height: 90vh;
+}
+.fileWindowToolBar{
+    position: absolute;
+    top: 10px;
+    width: calc(100% - 305px);
+    padding: 5px 3px 5px 3px;
+    margin-left: 1.5px;
+    background:rgba(240, 240, 240, 0.35) !important;
+    box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.2), 0 5px 15px 0 rgba(0, 0, 0, 0.19);
+}
+.filesGrid{
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 3px 10px 0 rgba(0, 0, 0, 0.19);
+    width: 99%;
+    height: 88vh;
+    border-radius: 1%;
+    margin-top: 75px;
+    margin-left: auto;
+    margin-right: auto;
+}
+.topBarRight{
+    display: flex;
+    justify-content: space-evenly;
+    overflow: hidden;
+}
+.leftToolBarIcons{
+    text-align: center;
+}
+.rightToolBarIcons i{
+    font-size: 14pt !important;
+}
+.rightToolBarIcons{
+    padding: 5px;
+    cursor: pointer;
+}
 
 
 /////////   Speed Dials   //////////
@@ -208,4 +283,55 @@
     }
 }
 }
+}
+
+
+///////// Mini Menu /////////
+.miniMenu{
+    position: absolute;
+    right:10px;
+    top: 42px;
+    padding: 10px;
+    border-radius: 2.5%;
+    height: 400px;
+    width: 370px;
+    background: rgba(233, 233, 233,0.20);
+}
+.subItem1{
+    float: left;
+    border-radius: 5%;
+    width: 145px;
+    height: 135px;
+    margin: 5px;
+    background: rgba(233, 233, 233,0.45);
+}
+.subItem2{
+    margin: 5px;
+    float: left;
+    border-radius: 8px;
+    width: 185px;
+    height: 40px;
+    background: rgba(233, 233, 233,0.45);
+}
+.subItem3{
+    margin: 5px;
+    float: left;
+    border-radius: 5%;
+    width: 85px;
+    height: 85px;
+    background: rgba(233, 233, 233,0.45);
+}
+.subItem4{
+    margin: 5px;
+    float: left;
+    border-radius: 8px;
+    width: 335px;
+    height: 80px;
+    background: rgba(233, 233, 233,0.45);
+    padding: 10px;
+}
+.itemListing{
+    display: flex;
+ //   justify-content: center;
+    align-items: center;
 }

@@ -23,12 +23,14 @@ export class DockComponent implements OnInit {
     dockItems: Array<MenuItem> = [];
     speedDialItems: Array<MenuItem> = [];
     sideBarFavourites: Array<TreeNode> = [];
+    sideBariCloud: Array<TreeNode> = [];
     menubarItems: any = [];
     responsiveOptionsList: any = [];
     images: any = [];
     selectedFile: TreeNode = {};
     files: Array<TreeNode> = [];
     files1: Array<TreeNode> = [];
+    showMiniMenu:boolean = true;  /////////////////////////
     subscription: any;
     contextMenuItems: Array<any> = [];
     _activeIndex: number = 2;
@@ -68,7 +70,6 @@ export class DockComponent implements OnInit {
                 icon: "assets/Dock/trash.png"
             }
         ];
-
         this.dockItems = [
             {
                 label: 'Finder',
@@ -147,8 +148,6 @@ export class DockComponent implements OnInit {
                 }
             }
         ];
-        this.sideBarFavourites
-
         this.menubarItems = [
             {
                 label: 'Finder',
@@ -160,6 +159,7 @@ export class DockComponent implements OnInit {
                     {
                         label: 'New',
                         icon: 'pi pi-fw pi-plus',
+                        style:{color:'black'},
                         items: [
                             {
                                 label: 'Bookmark',
@@ -275,7 +275,6 @@ export class DockComponent implements OnInit {
                 label: 'Quit'
             }
         ];
-
         this.responsiveOptionsList = [
             {
                 breakpoint: '1024px',
@@ -290,7 +289,6 @@ export class DockComponent implements OnInit {
                 numVisible: 1
             }
         ];
-
         this.contextMenuItems = [
             {
                 label: 'File',
@@ -422,7 +420,6 @@ export class DockComponent implements OnInit {
                 icon: 'pi pi-fw pi-power-off'
             }
         ];
-
         this.speedDialItems = [
             {
                 icon: 'pi pi-pencil',
@@ -452,11 +449,87 @@ export class DockComponent implements OnInit {
 
             }
         ]
+        this.sideBarFavourites = [
+            {
+                children : [],
+                data : "Recents",
+                icon : "pi pi-fw pi-clock",
+                key : "0",
+                label : "Recents",
+                parent : undefined
+            },
+            {
+                children : [],
+                data : "Applications",
+                icon : "pi pi-fw pi-prime",
+                key : "0",
+                label : "Applications",
+                parent : undefined
+            },
+            {
+                children : [],
+                data : "Desktop",
+                icon : "pi pi-fw pi-credit-card",
+                key : "0",
+                label : "Desktop",
+                parent : undefined
+            },
+            {
+                children : [],
+                data : "Documents",
+                icon : "pi pi-fw pi-file",
+                key : "0",
+                label : "Documents",
+                parent : undefined
+            },
+            {
+                children : [],
+                data : "Downloads",
+                icon : "pi pi-fw pi-download",
+                key : "0",
+                label : "Downloads",
+                parent : undefined
+            },
+            {
+                children : [],
+                data : "Pictures",
+                icon : "pi pi-fw pi-image",
+                key : "0",
+                label : "Pictures",
+                parent : undefined
+            },
+            {
+                children : [],
+                data : "Music",
+                icon : "fa fa-fw fa-music",
+                key : "0",
+                label : "Music",
+                parent : undefined
+            },
+            {
+                children : [],
+                data : "Movies",
+                icon : "fa fa-fw fa-film",
+                key : "0",
+                label : "Movies",
+                parent : undefined
+            }
+        ];
+        this.sideBariCloud = [
+            {
+                children : [],
+                data : "iCloud",
+                icon : "pi pi-fw pi-cloud",
+                key : "0",
+                label : "iCloud",
+                parent : undefined
+            }
+        ];
         this.loading = false;
         this.subscription = this.terminalService.commandHandler.subscribe((command: any) => this.commandHandler(command));
 
         this.galleriaService.getImages().then((data: any) => this.images = data);
-        this.nodeService.getFiles().then((file: any) => {this.files1 = file;this.sideBarFavourites = file});
+        this.nodeService.getFiles().then((file: any) => { this.files1 = file;});
         this.nodeService.getFiles().then((files: any) => {
             this.files = [{
                 label: 'Root',
@@ -520,6 +593,7 @@ export class DockComponent implements OnInit {
         this.treeView = !this.treeView;
     }
     showFinder() {
+        this.hideIcons();
         this.displayFinder = true;
         setTimeout(() => {
             const ele: HTMLElement = document.getElementsByClassName('pi-window-maximize')[0] as HTMLElement;
@@ -530,9 +604,18 @@ export class DockComponent implements OnInit {
     }
     minimizeFinder() {
         setTimeout(() => {
-            const ele: HTMLElement = document.getElementsByClassName('pi-window-minimize')[0] as HTMLElement;
+            const eleMin: HTMLElement = document.getElementsByClassName('pi-window-minimize')[0] as HTMLElement;
+            const eleMax: HTMLElement = document.getElementsByClassName('pi-window-maximize')[0] as HTMLElement;
             setTimeout(() => {
-                ele.click();
+                eleMin != null && eleMin != undefined ? eleMin.click() : eleMax.click();
+            }, 0);
+        }, 0);
+    }
+    hideIcons() {
+        setTimeout(() => {
+            const ele: HTMLElement = document.getElementsByClassName('p-dialog-header-icons')[0] as HTMLElement;
+            setTimeout(() => {
+                ele.hidden = true;
             }, 0);
         }, 0);
     }
@@ -541,10 +624,10 @@ export class DockComponent implements OnInit {
     }
 
     //////// Galleria Service Options //////////
+    //  =====>   Ignore the errrors if any, as these are not given by compiler but the language service 
     get activeIndex(): number {
         return this._activeIndex;
     }
-
     set activeIndex(newValue) {
         if (this.images && 0 <= newValue && newValue <= (this.images.length - 1)) {
             this._activeIndex = newValue;
@@ -553,11 +636,16 @@ export class DockComponent implements OnInit {
     next() {
         this.activeIndex++;
     }
-
     prev() {
         this.activeIndex--;
     }
 
     ////////    Context Menus   //////////
+
+    ////////    Mini Menu   //////////
+    val:number = 10;
+    toggleMiniMenu(){
+        this.showMiniMenu = !this.showMiniMenu;
+    }
 
 }
