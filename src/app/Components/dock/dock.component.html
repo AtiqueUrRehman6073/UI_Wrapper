@@ -11,7 +11,7 @@
         <i class="pi pi-bars"></i>
     </ng-template>
 </p-menubar>
-<div class="dock-window dock-advanced">
+<div class="dock-window dock-advanced" [style]="{height:'97vh',paddingBottom:'20px'}">
     <p-dock [model]="dockItems" position="bottom">
         <ng-template pTemplate="item" let-item>
             <img [src]="item.icon" [alt]="item.label" width="100%">
@@ -19,16 +19,55 @@
     </p-dock>
     <p-toast></p-toast>
 
-    <p-dialog [maximizable]="true" [closeOnEscape]="true" [dismissableMask]="true" [(visible)]="displayFinder" [breakpoints]="{'960px': '50vw'}" [style]="{width: '30vw', height: '18rem'}" [draggable]="true" [resizable]="true">
-        <!-- <p-tree [value]="files" (onNodeExpand)="nodeExpand($event)" [loading]="loading"></p-tree> -->
-        <button class="btn btn-sm btn-info" (click)="switchView()">Switch View</button>
-        <div style="border-right: 1px solid lightgrey;min-width: 200px;width: fit-content;min-height: 95vh;">
-            <p-tree [value]="files1" scrollHeight="90vh" *ngIf="!treeView"></p-tree>
-            <p-tree [value]="files" layout="horizontal" selectionMode="single" [(selection)]="selectedFile" *ngIf="treeView"></p-tree>
+    <p-dialog [maximizable]="true" [closeOnEscape]="true" [dismissableMask]="true" [(visible)]="displayFinder"
+        [breakpoints]="{'960px': '50vw'}" [style]="{width: '30vw', height: '18rem'}" [draggable]="true"
+        [resizable]="true">
+        <div class="closer">
+            <button pButton pRipple type="button" class="p-button-rounded p-button-danger p-button-sm closeIcons"
+                (click)="closeFinder()"></button>
+            <button pButton pRipple type="button" class="p-button-rounded p-button-warning p-button-sm closeIcons"
+                (click)="closeFinder()"></button>
+            <button pButton pRipple type="button" class="p-button-rounded p-button-success p-button-sm closeIcons"
+                (click)="minimizeFinder()"></button>
+            <button pButton pRipple type="button" class="p-button-rounded p-button-info p-button-sm closeIcons"
+                (click)="switchView()"></button>
+        </div>
+        <div class="grid">
+            <div class="col-2" class="colHolder">
+                <div class="sideBarFiles">
+                    <h6 style="margin: 3px 0px 3px 10px;color: grey;">Locations</h6>
+                    <p-tree [value]="files1" *ngIf="!treeView"></p-tree>
+                    <p-tree [value]="files" layout="horizontal" selectionMode="single" [(selection)]="selectedFile" *ngIf="treeView"></p-tree>
+                </div>
+                <div class="sideBarFiles">
+                    <h6 style="color: grey;">Favourites</h6>
+                    <p-tree [value]="sideBarFavourites"></p-tree>
+                </div>
+            </div>
+            <div class="col-10" #filesWindow style="height: 90vh;">
+                <p-contextMenu [target]="filesWindow" [model]="contextMenuItems"></p-contextMenu>
+                <div style="position: absolute;bottom: 100px;right: 100px;" class="speeddial-circle-demo">
+                    <p-speedDial [model]="speedDialItems" [radius]="120" direction="up-left" type="quarter-circle" [mask]="true" buttonClassName="p-button-info"></p-speedDial>
+                </div>
+            </div>
         </div>
     </p-dialog>
 
-    <p-dialog [maximizable]="true" [(visible)]="displayTerminal" [breakpoints]="{'960px': '50vw'}" [style]="{width: '30vw'}" [draggable]="true" [resizable]="true">
-        <p-terminal welcomeMessage="Welcome to PrimeNG (cmd: 'date', 'greet {0}', 'random')" prompt="primeng $"></p-terminal>
+    <p-dialog [maximizable]="true" [(visible)]="displayTerminal" [breakpoints]="{'960px': '50vw'}"
+        [style]="{width: '30vw'}" [draggable]="true" [resizable]="true">
+        <p-terminal welcomeMessage="Welcome to PrimeNG (cmd: 'date', 'greet {0}', 'random')" prompt="primeng $">
+        </p-terminal>
     </p-dialog>
+    <p-galleria [value]="images" [showThumbnails]="true" [showThumbnailNavigators]="true" [showItemNavigators]="true" [numVisible]="5"
+        [(visible)]="displayGalleria" [circular]="true" [responsiveOptions]="responsiveOptionsList" [transitionInterval]="2000"
+        [containerStyle]="{'max-width': '850px'}" [autoPlay]="true" [fullScreen]="true">
+        <ng-template pTemplate="item" let-item>
+            <img [src]="item.previewImageSrc" style="width: 100%; display: block;" />
+        </ng-template>
+        <ng-template pTemplate="thumbnail" let-item>
+            <div class="grid grid-nogutter justify-content-center">
+                <img [src]="item.thumbnailImageSrc" style="display: block;"/>
+            </div>
+        </ng-template>
+    </p-galleria>
 </div>

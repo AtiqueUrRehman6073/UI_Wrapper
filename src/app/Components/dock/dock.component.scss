@@ -108,4 +108,104 @@
             }
         }
     }
+    .p-dock-bottom{
+        margin-bottom: 10px;
+    }
+    .p-tree-horizontal{
+        min-height: 90vh;
+    }
+    .p-dialog-draggable{
+        background: #ffffff;
+    }
+    .p-tree{
+        background: transparent !important;   
+        border: none !important; 
+    }
+}
+.sideBarFiles{
+    padding-left: 15px !important;
+    border-top: none !important;
+    min-width: 306px;
+    max-width: 400px;
+    width: fit-content;
+    padding-top: 40px;
+}
+.colHolder{
+    border-right: 2px solid lightgrey;
+    background: rgba(211, 211, 211, 0.150) !important; 
+    height: 93vh;
+    width: fit-content !important;
+    padding: 0%;  
+}
+.closeIcons{
+    width: 20px !important;
+    height: 20px !important;
+}
+.closer{
+    min-width: 300px;
+    border-right: 2px solid lightgrey;
+    border-top-left-radius: 5%;
+    max-width: 300px;
+    background: rgba(211, 211, 211, 0.350) !important;
+    position: absolute;
+    top:0px;
+    padding: 3px 3px 3px 15px;
+}
+
+
+
+
+
+/////////   Speed Dials   //////////
+:host ::ng-deep {
+.speeddial-circle-demo {
+.p-speeddial-circle {
+    top: calc(50% - 2rem);
+    left: calc(50% - 2rem);
+}
+
+.p-speeddial-semi-circle {
+    &.p-speeddial-direction-up {
+        left: calc(50% - 2rem);
+        bottom: 0;
+    }
+
+    &.p-speeddial-direction-down {
+        left: calc(50% - 2rem);
+        top: 0;
+    }
+
+    &.p-speeddial-direction-left {
+        right: 0;
+        top: calc(50% - 2rem);
+    }
+
+    &.p-speeddial-direction-right {
+        left: 0;
+        top: calc(50% - 2rem);
+    }
+}
+
+.p-speeddial-quarter-circle {
+    &.p-speeddial-direction-up-left {
+        right: 0;
+        bottom: 0;
+    }
+
+    &.p-speeddial-direction-up-right {
+        left: 0;
+        bottom: 0;
+    }
+
+    &.p-speeddial-direction-down-left {
+        right: 0;
+        top: 0;
+    }
+
+    &.p-speeddial-direction-down-right {
+        left: 0;
+        top: 0;
+    }
+}
+}
 }

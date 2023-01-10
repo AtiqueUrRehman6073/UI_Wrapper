@@ -47,6 +47,9 @@ import { DockModule } from 'primeng/dock';
 import {TreeModule} from 'primeng/tree';
 import {TreeTableModule} from 'primeng/treetable';
 import {TerminalModule} from 'primeng/terminal';
+import {GalleriaModule} from 'primeng/galleria';
+import {TieredMenuModule} from 'primeng/tieredmenu';
+import {SpeedDialModule} from 'primeng/speeddial';
 // import {CodeHighlighterModule} from 'primeng/codehighlighter';
 // import {ChipsModule} from 'primeng/chips';
 // import {DataViewModule} from 'primeng/dataview';
@@ -55,7 +58,6 @@ import {TerminalModule} from 'primeng/terminal';
 // import {EditorModule} from 'primeng/editor';
 // import {FieldsetModule} from 'primeng/fieldset';
 // // import {FullCalendarModule} from 'primeng/fullcalendar';
-// import {GalleriaModule} from 'primeng/galleria';
 // import {InplaceModule} from 'primeng/inplace';
 // import {InputTextareaModule} from 'primeng/inputtextarea';
 // import {MegaMenuModule} from 'primeng/megamenu';
@@ -63,7 +65,6 @@ import {TerminalModule} from 'primeng/terminal';
 // import {OrganizationChartModule} from 'primeng/organizationchart';
 // import {PickListModule} from 'primeng/picklist';
 // import {StepsModule} from 'primeng/steps';
-// import {TieredMenuModule} from 'primeng/tieredmenu';
 // import {SplitButtonModule} from 'primeng/splitbutton';
 // import {VirtualScrollerModule} from 'primeng/virtualscroller';
 // import { MessageService } from 'primeng/api/public_api';
@@ -84,6 +85,7 @@ const modules = [
   DropdownModule,
   DockModule,
   FileUploadModule,
+  GalleriaModule,
   InputMaskModule,
   InputSwitchModule,
   InputTextModule,
@@ -106,18 +108,19 @@ const modules = [
   SelectButtonModule,
   SlideMenuModule,
   SliderModule,
+  SpeedDialModule,
   SpinnerModule,
   TabMenuModule,
   TableModule,
   TabViewModule,
   TerminalModule,
+  TieredMenuModule,
   ToastModule,
   ToggleButtonModule,
   ToolbarModule,
   TooltipModule,
   TreeModule,
   TreeTableModule
-  // MessageService,
 ];
 
 @NgModule({
